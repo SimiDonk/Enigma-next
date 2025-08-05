@@ -4,10 +4,33 @@ import Navigation from "../ui/Navigation";
 import { useTranslations } from "next-intl";
 import { Button, Input, Select, SelectItem, Textarea, Card, CardBody } from "@heroui/react";
 import { useState } from "react";
+import { FormEvent } from "react";
+
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  room: string;
+  date: string;
+  time: string;
+  participants: string;
+  specialRequests: string;
+}
+
+interface FormErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  room?: string;
+  date?: string;
+  time?: string;
+}
 
 export default function ReservationPage() {
   const t = useTranslations("reservations");
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
     email: "",
@@ -18,7 +41,7 @@ export default function ReservationPage() {
     participants: "2",
     specialRequests: ""
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<FormErrors>({});
 
   const rooms = [
     { key: "room1", label: t("rooms.room1") },
@@ -46,8 +69,8 @@ export default function ReservationPage() {
     { key: "6", label: "6" }
   ];
 
-  const validateForm = () => {
-    const newErrors = {};
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
     
     if (!formData.firstName.trim()) newErrors.firstName = t("requiredField");
     if (!formData.lastName.trim()) newErrors.lastName = t("requiredField");
@@ -69,7 +92,7 @@ export default function ReservationPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm()) {
       // TODO: Submit to Supabase or API
@@ -78,10 +101,10 @@ export default function ReservationPage() {
     }
   };
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: "" }));
+    if (errors[field as keyof FormErrors]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }));
     }
   };
 
@@ -173,8 +196,11 @@ export default function ReservationPage() {
                     <Select
                       label={t("selectRoom")}
                       placeholder={t("selectRoom")}
-                      value={formData.room}
-                      onChange={(e) => handleInputChange("room", e.target.value)}
+                      selectedKeys={formData.room ? [formData.room] : []}
+                      onSelectionChange={(keys) => {
+                        const selectedKey = Array.from(keys)[0] as string;
+                        handleInputChange("room", selectedKey || "");
+                      }}
                       isInvalid={!!errors.room}
                       errorMessage={errors.room}
                       classNames={{
@@ -184,7 +210,7 @@ export default function ReservationPage() {
                       required
                     >
                       {rooms.map((room) => (
-                        <SelectItem key={room.key} value={room.key}>
+                        <SelectItem key={room.key}>
                           {room.label}
                         </SelectItem>
                       ))}
@@ -208,8 +234,11 @@ export default function ReservationPage() {
                     <Select
                       label={t("selectTime")}
                       placeholder={t("selectTime")}
-                      value={formData.time}
-                      onChange={(e) => handleInputChange("time", e.target.value)}
+                      selectedKeys={formData.time ? [formData.time] : []}
+                      onSelectionChange={(keys) => {
+                        const selectedKey = Array.from(keys)[0] as string;
+                        handleInputChange("time", selectedKey || "");
+                      }}
                       isInvalid={!!errors.time}
                       errorMessage={errors.time}
                       classNames={{
@@ -219,7 +248,7 @@ export default function ReservationPage() {
                       required
                     >
                       {timeSlots.map((slot) => (
-                        <SelectItem key={slot.key} value={slot.key}>
+                        <SelectItem key={slot.key}>
                           {slot.label}
                         </SelectItem>
                       ))}
@@ -227,8 +256,11 @@ export default function ReservationPage() {
                     <Select
                       label={t("participants")}
                       description={t("participantsHelp")}
-                      value={formData.participants}
-                      onChange={(e) => handleInputChange("participants", e.target.value)}
+                      selectedKeys={[formData.participants]}
+                      onSelectionChange={(keys) => {
+                        const selectedKey = Array.from(keys)[0] as string;
+                        handleInputChange("participants", selectedKey || "2");
+                      }}
                       classNames={{
                         trigger: "bg-gray-800 border-gray-600",
                         value: "text-white"
@@ -236,7 +268,7 @@ export default function ReservationPage() {
                       defaultSelectedKeys={["2"]}
                     >
                       {participantOptions.map((option) => (
-                        <SelectItem key={option.key} value={option.key}>
+                        <SelectItem key={option.key}>
                           {option.label} {t("participantsHelp").includes("participants") ? "participants" : "résztvevő"}
                         </SelectItem>
                       ))}
