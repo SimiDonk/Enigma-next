@@ -33,7 +33,41 @@
     "bookingbutton": "Foglalás"
   },
   "reservations": {
-    "title": "Foglalasok"
+    "title": "Foglald le a szabadulószoba élményedet",
+    "subtitle": "Foglald le a helyedet egy felejthetetlen 90 perces szabadulós játék kalandhoz",
+    "personalInfo": "Személyes adatok",
+    "firstName": "Keresztnév",
+    "lastName": "Vezetéknév",
+    "email": "E-mail cím",
+    "phone": "Telefonszám", 
+    "bookingDetails": "Foglalás részletei",
+    "selectRoom": "Szabadulószoba kiválasztása",
+    "selectDate": "Dátum kiválasztása",
+    "selectTime": "Időpont kiválasztása",
+    "participants": "Résztvevők száma",
+    "participantsHelp": "Válassz 2-6 résztvevő között",
+    "specialRequests": "Különleges kérések (opcionális)",
+    "specialRequestsPlaceholder": "Bármilyen különleges igény vagy megjegyzés...",
+    "submitButton": "Foglalás",
+    "requiredField": "Ez a mező kötelező",
+    "invalidEmail": "Kérjük, adj meg egy érvényes e-mail címet",
+    "invalidPhone": "Kérjük, adj meg egy érvényes telefonszámot",
+    "rooms": {
+      "room1": "Rejtélykamra - Klasszikus rejtvény szoba",
+      "room2": "Időtorzulás - Sci-Fi kaland",
+      "room3": "Kísértetkastély - Horror élmény", 
+      "room4": "Kalózkincse - Kaland küldetés",
+      "room5": "Titkos ügynök - Kém misszió",
+      "room6": "Zombi apokalipszis - Túlélési kihívás"
+    },
+    "timeSlots": {
+      "10:00": "10:00",
+      "12:00": "12:00",
+      "14:00": "14:00", 
+      "16:00": "16:00",
+      "18:00": "18:00",
+      "20:00": "20:00"
+    }
   },
   "secondary-title": "Szabadulós játék"
 }
