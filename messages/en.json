@@ -33,7 +33,41 @@
     "bookingbutton": "Book now!"
   },
   "reservations": {
-    "title": "Reservations"
+    "title": "Book Your Escape Room Experience",
+    "subtitle": "Reserve your slot for an unforgettable 90-minute escape game adventure",
+    "personalInfo": "Personal Information",
+    "firstName": "First Name",
+    "lastName": "Last Name", 
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "bookingDetails": "Booking Details",
+    "selectRoom": "Select Escape Room",
+    "selectDate": "Select Date",
+    "selectTime": "Select Time",
+    "participants": "Number of Participants",
+    "participantsHelp": "Choose between 2-6 participants",
+    "specialRequests": "Special Requests (Optional)",
+    "specialRequestsPlaceholder": "Any special accommodations or notes...",
+    "submitButton": "Book Now",
+    "requiredField": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidPhone": "Please enter a valid phone number",
+    "rooms": {
+      "room1": "Mystery Chamber - Classic Puzzle Room",
+      "room2": "Time Warp - Sci-Fi Adventure", 
+      "room3": "Haunted Manor - Horror Experience",
+      "room4": "Pirate's Treasure - Adventure Quest",
+      "room5": "Secret Agent - Spy Mission",
+      "room6": "Zombie Apocalypse - Survival Challenge"
+    },
+    "timeSlots": {
+      "10:00": "10:00 AM",
+      "12:00": "12:00 PM", 
+      "14:00": "2:00 PM",
+      "16:00": "4:00 PM",
+      "18:00": "6:00 PM",
+      "20:00": "8:00 PM"
+    }
   },
 
   "secondary-title": "Escape game"

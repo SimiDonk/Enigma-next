@@ -1,4 +1,3 @@
-import { Roboto, Lora } from "next/font/google";
 import "./globals.css";
 import { Locale, NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -10,18 +9,6 @@ type Props = {
   children: React.ReactNode;
   params: Promise<{ locale: Locale }>;
 };
-
-const roboto = Roboto({
-  variable: "--font-roboto",
-  subsets: ["latin"],
-  weight: "700",
-});
-
-const lora = Lora({
-  variable: "--font-lora",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
 
 export async function generateStaticParams() {
   return [{ locale: "en" }, { locale: "hu" }];
@@ -46,7 +33,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html
       lang={locale}
-      className={`${roboto.variable} ${lora.variable} antialiased bg-black scroll-smooth`}
+      className="font-sans antialiased bg-black scroll-smooth"
     >
       <body className="w-full md:max-w-[120rem] m-auto">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
